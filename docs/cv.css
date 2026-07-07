@@ -1,0 +1,43 @@
+/* CV-specific styles layered on top of gloam. Everything derives from gloam
+   tokens (no new colors). gl-timeline is a generic component and a candidate to
+   upstream into gloam proper; the rest are light CV helpers. */
+
+/* ---- timeline (career / experience history) ------------------------------ */
+/* A vertical list of dated entries on an accent rail with node markers.
+   <ol class="gl-timeline"> of <li class="gl-tl-item">; each item has a
+   .gl-tl-head (title + org + date) and optional note / bullet list. */
+.gl-timeline { list-style: none; margin: 30px 0 0; padding: 0; position: relative; }
+.gl-timeline::before {
+  content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+  background: linear-gradient(180deg, var(--gl-accent), color-mix(in srgb, var(--gl-accent) 12%, transparent));
+}
+.gl-tl-item { position: relative; padding: 0 0 28px 36px; }
+.gl-tl-item:last-child { padding-bottom: 0; }
+.gl-tl-item::before {
+  content: ""; position: absolute; left: 0; top: 5px; width: 16px; height: 16px; border-radius: 999px;
+  background: var(--gl-bg); border: 2px solid var(--gl-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--gl-accent) 12%, transparent);
+}
+.gl-tl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+.gl-tl-title { font-size: 1.05rem; font-weight: 700; margin: 0; }
+.gl-tl-org { color: var(--gl-accent-2); font-weight: 700; }
+.gl-tl-date { margin-left: auto; font: 600 .8rem/1.5 var(--gl-mono); color: var(--gl-faint); white-space: nowrap; }
+.gl-tl-note { color: var(--gl-muted); margin: 6px 0 0; font-size: .95rem; }
+.gl-tl-item ul { margin: 10px 0 0; padding-left: 18px; color: var(--gl-muted); font-size: .95rem; }
+.gl-tl-item ul li { margin: 5px 0; }
+@media (max-width: 560px) { .gl-tl-date { margin-left: 0; } }
+
+/* ---- contact row (hero) -------------------------------------------------- */
+.gl-contact { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 20px 0 0; padding: 0; list-style: none;
+  font: 600 .9rem/1.4 var(--gl-mono); }
+.gl-contact li { display: flex; align-items: center; gap: 7px; color: var(--gl-muted); }
+.gl-contact svg { width: 15px; height: 15px; color: var(--gl-accent-2); flex: none; }
+.gl-contact a { color: var(--gl-muted); }
+.gl-contact a:hover { color: var(--gl-fg); }
+
+/* ---- labelled rows (skills) ---------------------------------------------- */
+.gl-defs { display: grid; gap: 16px; margin: 28px 0 0; }
+.gl-def { display: grid; grid-template-columns: 150px 1fr; gap: 8px 22px; align-items: start; }
+.gl-def dt { font: 700 .76rem/1.7 var(--gl-mono); color: var(--gl-accent-2); text-transform: uppercase; letter-spacing: .05em; }
+.gl-def dd { margin: 0; }
+@media (max-width: 560px) { .gl-def { grid-template-columns: 1fr; gap: 6px; } }
